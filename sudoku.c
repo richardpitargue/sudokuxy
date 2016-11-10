@@ -19,8 +19,25 @@ int main() {
         }
     }
 
-    printf("%d\n", finished(grid, dimension));
-    i = validate(grid, grid_size);
+
+    k=0;
+    struct node *temp;
+    for(i=0; i<dimension; i++) {
+        for(j=0; j<dimension; j++) {
+            if(grid[i][j] == 0) {
+                k = backtrack(grid, grid_size, i, j);
+                temp = pop();
+                grid[temp->r][temp->c] = temp->x;
+            }
+        }
+    }
+
+    for(i=0; i<dimension; i++) {
+        for(j=0; j<dimension; j++) {
+            printf("%d ", grid[i][j]);
+        }
+        printf("\n");
+    }
 
     teardown(grid, dimension);
     return 0;

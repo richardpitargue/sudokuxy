@@ -3,8 +3,8 @@
 
 struct node {
     int x;
-    int row;
-    int col;
+    int r;
+    int c;
     struct node * next;
 };
 
@@ -16,6 +16,8 @@ void push(int x, int r, int c) {
 
     p = malloc(sizeof(struct node));
     p->x = x;
+    p->r = r;
+    p->c = c;
     p->next = head;
     head = p;
 
