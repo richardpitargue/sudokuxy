@@ -30,8 +30,8 @@ int duplicate(char *err, int *buffer, int *x, int *r, int *c) {
     if(*x >= 0) {
         buffer[*x] += 1;
         if(buffer[*x] != 1) {
-            printf("%s ERROR: Invalid input at r:%d c:%d\n", err, *r, *c);
-            // free(buffer);
+            // printf("%s ERROR: Invalid input at r:%d c:%d\n", err, *r, *c);
+            free(buffer);
             return 1;
         }
     }
@@ -82,25 +82,38 @@ int validate(int **grid, int grid_size) {
         }
     }
 
-    // free(buffer);
+    free(buffer);
     return 1;
 }
 
-int backtrack(int **grid, int grid_size, int r, int c) {
-    int i, dimension, x;
+void find_next(int **grid, int dimension, int *r, int *c) {
+    for(*r = 0; *r < dimension; (*r)++) {
+        for(*c = 0; *c < dimension; (*c)++) {
+            if(grid[*r][*c] == 0) return;
+        }
+    }
+}
+
+int populate(int **grid, int grid_size, int r, int c) {
+    int i, dimension, flag;
 
     dimension = grid_size*grid_size;
-
-    if(finished(grid, dimension)) return 1;
+    flag = 0;
 
     for(i=dimension; i>0; i--) {
         grid[r][c] = i;
         if(validate(grid, grid_size)) {
             push(i, r, c);
-        }
+            flag = 1;
+        } else grid[r][c] = 0;
     }
 
-    return 0;
+    return flag;
+}
+
+void backtrack() {
+
+
 }
 
 void teardown(int **grid, int dimension) {
