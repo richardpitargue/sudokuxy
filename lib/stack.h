@@ -41,9 +41,9 @@ struct node * peak() {
     return p;
 }
 
-void print_stack() {
+void print_stack(struct node *temp) {
     struct node *p;
-    p = head;
+    p = temp;
     while(p != NULL) {
         printf("%d -> ", p->x);
         p = p->next;

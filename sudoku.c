@@ -19,59 +19,35 @@ int main() {
         }
     }
 
-    struct node *temp;
-    // for(i=0; i<3; i++) {
-    //     for(j=0; j<dimension; j++) {
-    //         if(grid[i][j] == 0) {
-    //             k = backtrack(grid, grid_size, i, j);
-    //             print_stack();
-    //             temp = pop();
-    //             printf("x:%d r:%d c:%d\n", temp->x, temp->r, temp->c);
-    //             grid[temp->r][temp->c] = temp->x;
-    //         }
-    //     }
-    // }
-
+    struct node *temp = NULL;
+    struct node *p, *p2;
     while(!finished(grid, dimension)) {
-    // k=0;
-    // while(k++ < 2) {
         find_next(grid, dimension, &i, &j);
 
-        // if(backtrack(grid, grid_size, i, j)) { // MAPANLINLANG!! di ito backtracking
         k = populate(grid, grid_size, i, j);
-        print_stack();
-        temp = pop();
-        grid[temp->r][temp->c] = temp->x;
-
-        if(k == 0) backtrack(grid, temp, dimension, i, j);
+        p = pop();
         
-        for(i=0; i<dimension; i++) {
-            for(j=0; j<dimension; j++) {
-                printf("%d ", grid[i][j]);
+        if(k == 0) {
+            p2 = temp;
+            while(p2->r >= p->r && p2->c >= p->c) {
+                temp = temp->next;
+                p2->next = NULL;
+
+                grid[p2->r][p2->c] = 0;
+                p2 = temp;
             }
-            printf("\n");
-        } 
+        }
 
-        // } else {
-        //     // do backtracking here
-        //     // https://goo.gl/K8yCt5
-        //     temp = pop();
-        //     grid[temp->r][temp->c] = temp->x;  
-        // }
+        if(temp == NULL) {
+            temp = p;
+            temp->next = NULL;
+        } else {
+            p->next = temp;
+            temp = p;
+        }
+        grid[p->r][p->c] = p->x;
+
     }
-    
-
-
-    // while(puzzle not finished) {
-    //   find unassigned cell
-
-    //   if(finished)
-    //      return success
-
-    //   perform backtracking
-    //   if(backtracking is successful)
-    //    return success
-    // }
 
     teardown(grid, dimension);
     return 0;
