@@ -24,7 +24,7 @@ int finished(int **grid, int dimension) {
     return 1;
 }
 
-int duplicate(char *err, int *buffer, int *x, int *r, int *c) {
+int duplicate(int *buffer, int *x) {
     int i;
 
     if(*x >= 0) {
@@ -52,7 +52,7 @@ int validate(int **grid, int grid_size) {
     for(i=0; i<dimension; i++) {
         for(j=0; j<dimension; j++) {
             x = grid[i][j]-1;
-            if(duplicate("ROW", buffer, &x, &i, &j))
+            if(duplicate(buffer, &x))
                 return 0;
         }
         for(x=0; x<dimension; x++) buffer[x] = 0;
@@ -62,7 +62,7 @@ int validate(int **grid, int grid_size) {
     for(i=0; i<dimension; i++) {
         for(j=0; j<dimension; j++) {
             x = grid[j][i]-1;
-            if(duplicate("COL", buffer, &x, &j, &i))
+            if(duplicate(buffer, &x))
                 return 0;
         }
         for(x=0; x<dimension; x++) buffer[x] = 0;
@@ -74,7 +74,7 @@ int validate(int **grid, int grid_size) {
             for(k=i; k<(i+grid_size); k++) {
                 for(l=j; l<(j+grid_size); l++) {
                     x = grid[k][l]-1;
-                    if(duplicate("GRID", buffer, &x, &k, &l))
+                    if(duplicate(buffer, &x))
                         return 0;
                 }
             }
@@ -109,11 +109,6 @@ int populate(int **grid, int grid_size, int r, int c) {
     }
 
     return flag;
-}
-
-void backtrack() {
-
-
 }
 
 void teardown(int **grid, int dimension) {

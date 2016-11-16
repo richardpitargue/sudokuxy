@@ -21,15 +21,20 @@ int main() {
 
     struct node *temp = NULL;
     struct node *p, *p2;
-    while(!finished(grid, dimension)) {
+    count = 0;
+    do {
         find_next(grid, dimension, &i, &j);
-
-        k = populate(grid, grid_size, i, j);
+        if(finished(grid, dimension)) {
+            count++;
+            k = 0;
+        } else {
+            k = populate(grid, grid_size, i, j);
+        }
         p = pop();
-        
+
         if(k == 0) {
             p2 = temp;
-            while(p2->r >= p->r && p2->c >= p->c) {
+            while(temp != NULL && (dimension*p2->r)+p2->c >= (dimension*p->r)+p->c) {
                 temp = temp->next;
                 p2->next = NULL;
 
@@ -47,7 +52,7 @@ int main() {
         }
         grid[p->r][p->c] = p->x;
 
-    }
+    }while(head != NULL);
 
     teardown(grid, dimension);
     return 0;
