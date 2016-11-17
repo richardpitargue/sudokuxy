@@ -3,8 +3,8 @@
 
 struct node {
     int x;
-    int row;
-    int col;
+    int r;
+    int c;
     struct node * next;
 };
 
@@ -16,6 +16,8 @@ void push(int x, int r, int c) {
 
     p = malloc(sizeof(struct node));
     p->x = x;
+    p->r = r;
+    p->c = c;
     p->next = head;
     head = p;
 
@@ -39,11 +41,11 @@ struct node * peak() {
     return p;
 }
 
-void print_stack() {
+void print_stack(struct node *temp) {
     struct node *p;
-    p = head;
+    p = temp;
     while(p != NULL) {
-        printf("%d -> ", p->x);
+        printf("%d.%d.%d -> ", p->x, p->r, p->c);
         p = p->next;
     }
     printf("EOS\n");
