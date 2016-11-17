@@ -45,7 +45,7 @@ void print_stack(struct node *temp) {
     struct node *p;
     p = temp;
     while(p != NULL) {
-        printf("%d -> ", p->x);
+        printf("%d.%d.%d -> ", p->x, p->r, p->c);
         p = p->next;
     }
     printf("EOS\n");
