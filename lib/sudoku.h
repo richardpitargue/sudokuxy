@@ -48,24 +48,33 @@ int validate(int **grid, int grid_size) {
     buffer = (int *)malloc(sizeof(int)*dimension);
     for(i=0; i<dimension; i++) buffer[i] = 0;
 
-
-    /* check main diagonals (Sudoku X)*/
-    for(i = 0; i < dimension; i++) {
-        x = grid[i][i]-1;
-        if(duplicate(buffer, &x)) {
-            return 0;
+    /***        Check Y        ***/
+    if(dimension % 2 != 0){
+      // left wing
+      for(i=0; i<(dimension/2); i++){
+        for(j=0; j<dimension; j++){
+          if((i == j && (j < (dimension/2))) || ((i == (dimension/2)) && (j >= (dimension/2)))){
+            x = grid[i][j]-1;
+            if(duplicate(buffer, &x))
+                return 0;
+          }
         }
         for(x=0; x<dimension; x++) buffer[x] = 0;
-    }
+      }
 
-    for(i = 0; i < dimension; i++) {
-        x = grid[i][dimension-i]-1;
-        if(duplicate(buffer, &x)) {
-            return 0;
+      // right wing
+      for(i=((dimension/2)+1); i<dimension; i++){
+        for(j=0; j<dimension; j++){
+          if((j == (dimension-i-1) && (j < (dimension/2))) || ((i == (dimension/2)) && (j >= (dimension/2)))){
+            x = grid[i][j]-1;
+            if(duplicate(buffer, &x))
+                return 0;
+          }
         }
         for(x=0; x<dimension; x++) buffer[x] = 0;
+      }
     }
-    
+
     /***        Check Rows        ***/
     for(i=0; i<dimension; i++) {
         for(j=0; j<dimension; j++) {
