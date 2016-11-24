@@ -5,7 +5,7 @@ int main() {
     int  **grid;
     FILE *fp;
 
-    fp = fopen("bin/check_y.txt", "r");
+    fp = fopen("bin/data.in", "r");
     fscanf(fp, "%d", &count);
 
     for(counter=0; counter<count; counter++) {
@@ -53,13 +53,13 @@ int main() {
             }
             grid[p->r][p->c] = p->x;
 
-            for(i=0; i<dimension; i++){
-              for(j=0; j<dimension; j++){
-                printf("%d ", grid[i][j]);
-              }
-              printf("\n");
-            }
-            printf("--------------------------------\n");
+            // for(i=0; i<dimension; i++){
+            //   for(j=0; j<dimension; j++){
+            //     printf("%d ", grid[i][j]);
+            //   }
+            //   printf("\n");
+            // }
+            // printf("--------------------------------\n");
         }while(1);
         printf("Number of solutions: %d\n", x);
 

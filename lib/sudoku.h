@@ -48,6 +48,23 @@ int validate(int **grid, int grid_size) {
     buffer = (int *)malloc(sizeof(int)*dimension);
     for(i=0; i<dimension; i++) buffer[i] = 0;
 
+    /***        Check X        ***/
+    for(i = 0; i < dimension; i++) {
+        x = grid[i][i]-1;
+        if(duplicate(buffer, &x)) {
+            return 0;
+        }
+        for(x=0; x<dimension; x++) buffer[x] = 0;
+    }
+ 
+    for(i = 0; i < dimension; i++) {
+        x = grid[i][dimension-i]-1;
+        if(duplicate(buffer, &x)) {
+            return 0;
+        }
+        for(x=0; x<dimension; x++) buffer[x] = 0;
+    }
+
     /***        Check Y        ***/
     if(dimension % 2 != 0){
       // left wing
