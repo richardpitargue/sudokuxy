@@ -53,6 +53,13 @@ int main() {
             }
             grid[p->r][p->c] = p->x;
 
+            // for(i=0; i<dimension; i++){
+            //   for(j=0; j<dimension; j++){
+            //     printf("%d ", grid[i][j]);
+            //   }
+            //   printf("\n");
+            // }
+            // printf("--------------------------------\n");
         }while(1);
         printf("Number of solutions: %d\n", x);
 
