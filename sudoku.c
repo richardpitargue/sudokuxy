@@ -28,7 +28,7 @@ int main() {
                 k = 0;
             } else {
                 find_next(grid, dimension, &i, &j);
-                k = populate(0, grid, grid_size, i, j);
+                k = populate(3, grid, grid_size, i, j);
             }
             if(head == NULL) break;
             p = pop();
