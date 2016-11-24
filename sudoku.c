@@ -5,8 +5,9 @@ int main() {
     int  **grid;
     FILE *fp;
 
-    fp = fopen("bin/data.in", "r");
+    fp = fopen("bin/input2.txt", "r");
     fscanf(fp, "%d", &count);
+
 
     for(counter=0; counter<count; counter++) {
         fscanf(fp, "%d", &grid_size);
@@ -16,7 +17,6 @@ int main() {
         for(j=0; j<dimension; j++) {
             for(k=0; k<dimension; k++)
                 fscanf(fp, "%d", &grid[j][k]);
-
         }
 
         struct node *temp = NULL;
@@ -28,7 +28,7 @@ int main() {
                 k = 0;
             } else {
                 find_next(grid, dimension, &i, &j);
-                k = populate(grid, grid_size, i, j);
+                k = populate(0, grid, grid_size, i, j);
             }
             if(head == NULL) break;
             p = pop();
@@ -62,9 +62,9 @@ int main() {
             // printf("--------------------------------\n");
         }while(1);
         printf("Number of solutions: %d\n", x);
-
     }
 
+    fclose(fp);
     teardown(grid, dimension);
     return 0;
 }
