@@ -1,13 +1,12 @@
+import java.awt.Dimension;
+
 import javax.swing.JPanel;
 
 public class MenuPanel extends JPanel {
 
-    private Options options;
-
-    public MenuPanel(Options options) {
+    public MenuPanel() {
         super();
-        this.options = options;
-        setPreferredSize(options.getDimension());
+        setPreferredSize(new Dimension(800, 600));
     }
 
 }
