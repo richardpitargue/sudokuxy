@@ -14,19 +14,23 @@ public class SudokuSolver {
     private int mode;
 	private int[][] sudoku;
 
-	public SudokuSolver(int[][] data, int mode, int subgridSize) {
+	public SudokuSolver() {}
+
+    public void init(int[][] data, int mode, int subgridSize) {
         this.sudoku    = data;
         this.mode      = mode;
         this.gridSize  = subgridSize;
         this.dimension = subgridSize*subgridSize;
-	}
+    }
 
-	public ArrayList<int[][]> findSolutions() {
+	public ArrayList<int[][]> findSolutions(int[][] data, int mode, int subgridSize) {
 		boolean flag = false;
 
 		ArrayList<int[][]> solutions = new ArrayList<int[][]>();
 		stack = new ArrayList<Action>();
 		temp  = new ArrayList<Action>();
+
+        init(data, mode, subgridSize);
 
 		do {
 			if(isFinished()) {
