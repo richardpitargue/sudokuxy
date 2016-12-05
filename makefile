@@ -1,5 +1,5 @@
-all: main
-	./a.out
+all: gui_prep
+	java -cp bin Main
 
-main: sudoku.c
-	gcc sudoku.c
+gui_prep:
+	javac -d bin src/*
