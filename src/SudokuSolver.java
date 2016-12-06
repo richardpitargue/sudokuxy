@@ -85,6 +85,26 @@ public class SudokuSolver {
 		return true;
 	}
 
+    public boolean isSolved(int mode) {
+        if(!isFinished()) return false;
+        switch(mode) {
+            case 0:
+                if(!validate()) return false;
+                break;
+            case 1:
+                if(!validateX()) return false;
+                break;
+            case 2:
+                if(!validateY()) return false;
+                break;
+            case 3:
+                if(!validateXY()) return false;
+                break;
+        }
+
+        return true;
+    }
+
 	public int[] findNext() {
 		int[] coor = null;
 
